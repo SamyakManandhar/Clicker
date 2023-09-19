@@ -87,26 +87,26 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/num"
-            app:layout_constraintTop_toTopOf="@id/cancel_button" />
+            app:layout_constraintTop_toTopOf="@id/minus_button" />
 
         <Button
-            android:id="@+id/cancel_button"
+            android:id="@+id/minus_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:text="-"
-            app:layout_constraintEnd_toStartOf="@id/next_button"
+            app:layout_constraintEnd_toStartOf="@id/plus_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/next_button" />
+            app:layout_constraintTop_toTopOf="@id/plus_button" />
 
         <Button
-            android:id="@+id/next_button"
+            android:id="@+id/plus_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="+"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/cancel_button"
+            app:layout_constraintStart_toEndOf="@id/minus_button"
             app:layout_constraintTop_toBottomOf="@+id/num" />
 
 
