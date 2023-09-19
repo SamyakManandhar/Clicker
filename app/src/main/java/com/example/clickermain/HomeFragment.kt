@@ -47,6 +47,7 @@ class HomeFragment : Fragment() {
         binding.inCount.text = sharedViewModel.ins.toString()
         binding.outCount.text = sharedViewModel.outs.toString()
         binding.total.text = sharedViewModel.total.toString()
+        binding.capacity.text = sharedViewModel.capacity.toString()
     }
 
     override fun onDestroyView() {

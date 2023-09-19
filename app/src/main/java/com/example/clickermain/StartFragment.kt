@@ -31,6 +31,10 @@ class StartFragment : Fragment() {
             val action = StartFragmentDirections.actionStartFragmentToHomeFragment()
             view.findNavController().navigate(action)
         }
+        binding.test1.setOnClickListener {
+            val action = StartFragmentDirections.actionStartFragmentToRoomFragment()
+            view.findNavController().navigate(action)
+        }
     }
 
     override fun onDestroyView() {

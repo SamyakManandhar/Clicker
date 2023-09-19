@@ -12,6 +12,9 @@ class ClickViewModel : ViewModel() {
     private var _total = 0
     val total: Int
         get() = _total
+    private var _capacity = 0
+    val capacity: Int
+        get() = _capacity
 
     fun getTotal() {
         _total = _ins.minus(_outs)
@@ -19,6 +22,9 @@ class ClickViewModel : ViewModel() {
 
     fun setIns() {
         _ins = _ins.plus(1)
+    }
+    fun setCapacity(limits:Int) {
+        _capacity=limits
     }
 
     fun setOuts() {
