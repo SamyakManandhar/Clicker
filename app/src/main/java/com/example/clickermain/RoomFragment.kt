@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.example.clickermain.databinding.FragmentHomeBinding
@@ -15,7 +16,7 @@ import com.example.clickermain.model.ClickViewModel
 class RoomFragment : Fragment() {
     private var _binding: FragmentRoomBinding? = null
     private val binding get() = _binding!!
-    private val sharedViewModel: ClickViewModel by viewModels()
+    private val sharedViewModel: ClickViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -40,8 +41,8 @@ class RoomFragment : Fragment() {
     }
 
     private fun onSubmitWord() {
-        val play = binding.textInputEditText.text.toString().toInt()
-        sharedViewModel.setCapacity(play)
+        val play = binding.textInputEditText.text.toString()
+        sharedViewModel.setCapacity(play.toInt())
     }
 
     private fun setErrorTextField(error: Boolean) {

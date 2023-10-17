@@ -15,7 +15,7 @@ import com.example.clickermain.model.ClickViewModel
 class StartFragment : Fragment() {
     private var _binding: FragmentStartBinding? = null
     private val binding get() = _binding!!
-    private val sharedViewModel: ClickViewModel by viewModels()
+    private val sharedViewModel: ClickViewModel by activityViewModels()
 
 
     override fun onCreateView(

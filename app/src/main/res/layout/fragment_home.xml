@@ -121,7 +121,7 @@
             android:gravity="center"
             app:layout_constraintStart_toEndOf="@id/divider2"
             app:layout_constraintTop_toBottomOf="@id/divider2"
-            tools:text="1000" />
+            tools:text="1000"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
