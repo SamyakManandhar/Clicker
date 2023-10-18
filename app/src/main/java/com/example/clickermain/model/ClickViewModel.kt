@@ -23,13 +23,20 @@ class ClickViewModel : ViewModel() {
     fun setIns() {
         _ins = _ins.plus(1)
     }
-    fun setCapacity(limits:Int) {
-        _capacity=limits
+
+    fun setCapacity(limits: Int) {
+        _capacity = limits
     }
 
     fun setOuts() {
         _outs = _outs.plus(1)
     }
 
+    fun checkCap(): Boolean {
+        return _capacity != 0
+    }
 
+    fun checkLimit():Boolean{
+        return _total>_capacity
+    }
 }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import com.example.clickermain.databinding.FragmentHomeBinding
 import com.example.clickermain.model.ClickViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -30,7 +31,11 @@ class HomeFragment : Fragment() {
         binding.plusButton.setOnClickListener {
             sharedViewModel.setIns()
             sharedViewModel.getTotal()
-            updateScreen()
+            if (sharedViewModel.checkCap() && sharedViewModel.checkLimit()) {
+                showDialog()
+            } else {
+                updateScreen()
+            }
         }
 
         binding.minusButton.setOnClickListener {
@@ -51,6 +56,8 @@ class HomeFragment : Fragment() {
                 exitGame()
             }
             .setPositiveButton(getString(R.string.increase)) { _, _ ->
+                val action = HomeFragmentDirections.actionHomeFragmentToRoomFragment()
+                view?.findNavController()?.navigate(action)
             }
             .show()
     }
@@ -59,7 +66,14 @@ class HomeFragment : Fragment() {
         binding.ins.text = sharedViewModel.ins.toString()
         binding.out.text = sharedViewModel.outs.toString()
         binding.num.text = sharedViewModel.total.toString()
-        binding.capacity.text = sharedViewModel.capacity.toString()
+        if (sharedViewModel.checkCap()) {
+            binding.capacity.text = sharedViewModel.capacity.toString()
+        } else {
+            binding.divider2.visibility = View.INVISIBLE
+            binding.capacity.visibility = View.INVISIBLE
+            binding.cap.visibility = View.INVISIBLE
+        }
+
     }
 
     private fun exitGame() {

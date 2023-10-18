@@ -16,5 +16,5 @@
     <string name="warning">You have exceeded your Capacity.</string>
     <string name="message">Your capacity declared was: %d</string>
     <string name="exit">Exit</string>
-    <string name="increase">Increase capacity by 10%</string>
+    <string name="increase">Increase capacity</string>
 </resources>
