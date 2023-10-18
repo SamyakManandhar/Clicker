@@ -36,7 +36,13 @@ class ClickViewModel : ViewModel() {
         return _capacity != 0
     }
 
-    fun checkLimit():Boolean{
-        return _total>_capacity
+    fun checkLimit(): Boolean {
+        return _total > _capacity
+    }
+
+    fun reset() {
+        _ins = 0
+        _outs = 0
+        _total = 0
     }
 }

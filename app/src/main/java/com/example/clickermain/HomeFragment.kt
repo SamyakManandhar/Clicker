@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.clickermain.databinding.FragmentHomeBinding
@@ -37,6 +38,9 @@ class HomeFragment : Fragment() {
                 updateScreen()
             }
         }
+        binding.clearButton.setOnClickListener {
+            showAlertDialog()
+        }
 
         binding.minusButton.setOnClickListener {
             if (sharedViewModel.ins > sharedViewModel.outs) {
@@ -52,8 +56,8 @@ class HomeFragment : Fragment() {
             .setTitle(getString(R.string.capacity))
             .setMessage(getString(R.string.message, sharedViewModel.capacity))
             .setCancelable(false)
-            .setNegativeButton(getString(R.string.exit)) { _, _ ->
-                exitGame()
+            .setNegativeButton(getString(R.string.cancel)) { _, _ ->
+                Toast.makeText(requireContext(), R.string.cancelled, Toast.LENGTH_SHORT).show()
             }
             .setPositiveButton(getString(R.string.increase)) { _, _ ->
                 val action = HomeFragmentDirections.actionHomeFragmentToRoomFragment()
@@ -76,7 +80,20 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun exitGame() {
+    private fun showAlertDialog() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(getString(R.string.confirmation))
+            .setCancelable(true)
+            .setNegativeButton(getString(R.string.cancel)) { _, _ ->
+                Toast.makeText(requireContext(), R.string.cancelled, Toast.LENGTH_SHORT).show()
+            }.setPositiveButton(getString(R.string.clear)) { _, _ ->
+                sharedViewModel.reset()
+                updateScreen()
+            }
+            .show()
+    }
+
+    private fun exit() {
         activity?.finish()
     }
 
