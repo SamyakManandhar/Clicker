@@ -11,49 +11,69 @@
         android:layout_height="wrap_content"
         android:padding="8dp">
         <!-- TODO: Update blank fragment layout -->
-        <TextView
-            android:id="@+id/in_count"
+        <LinearLayout
+            android:id="@+id/heading"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="left"
-            android:text="@string/in"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="3"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/total"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/total"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/in_count"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/in_count"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/in"
+                android:textStyle="bold"
+                android:typeface="serif" />
 
 
-        <TextView
-            android:id="@+id/out_count"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="end"
-            android:text="@string/out"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/total"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/total"
+                android:textStyle="bold"
+                android:typeface="serif" />
+
+
+            <TextView
+                android:id="@+id/out_count"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/out"
+                android:textStyle="bold"
+                android:typeface="serif" />
+        </LinearLayout>
+
 
         <View
             android:id="@+id/divider1"
             android:layout_width="0dp"
             android:layout_height="1dp"
+            android:background="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/total" />
+            app:layout_constraintTop_toBottomOf="@+id/heading" />
 
         <TextView
             android:id="@+id/ins"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="start"
+            android:padding="10dp"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            android:typeface="monospace"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider1"
             tools:text="100" />
@@ -63,6 +83,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:padding="10dp"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            android:typeface="monospace"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ins"
             app:layout_constraintTop_toBottomOf="@id/divider1"
@@ -74,6 +98,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="right"
+            android:padding="10dp"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            android:typeface="monospace"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/num"
             app:layout_constraintTop_toBottomOf="@id/divider1"
@@ -83,45 +111,88 @@
             android:id="@+id/divider"
             android:layout_width="0dp"
             android:layout_height="1dp"
+            android:background="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/num"
-            app:layout_constraintTop_toTopOf="@id/minus_button" />
-
-        <Button
-            android:id="@+id/minus_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="@string/minus"
-            app:layout_constraintEnd_toStartOf="@id/plus_button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/plus_button" />
-
-        <Button
-            android:id="@+id/plus_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/plus"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/minus_button"
             app:layout_constraintTop_toBottomOf="@+id/num" />
+
+        <TextView
+            android:id="@+id/cap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/capacity"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:typeface="serif"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
         <View
             android:id="@+id/divider2"
             android:layout_width="0dp"
             android:layout_height="1dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/cap"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="@+id/plus_button"/>
+            app:layout_constraintStart_toStartOf="parent" />
+
         <TextView
             android:id="@+id/capacity"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:padding="10dp"
+            android:textColor="@color/red_700"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:typeface="monospace"
             app:layout_constraintStart_toEndOf="@id/divider2"
             app:layout_constraintTop_toBottomOf="@id/divider2"
-            tools:text="1000"/>
+            tools:text="1000" />
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/capacity" />
+
+        <Button
+            android:id="@+id/minus_button"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/round_button"
+            android:text="@string/minus"
+            app:layout_constraintEnd_toStartOf="@id/plus_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/plus_button"
+            app:tint="@android:color/white" />
+
+
+        <Button
+            android:id="@+id/plus_button"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            android:text="@string/plus"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/round_button"
+            android:src="@android:drawable/ic_input_delete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/minus_button"
+            app:layout_constraintTop_toBottomOf="@+id/divider3"
+            app:tint="@android:color/white" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

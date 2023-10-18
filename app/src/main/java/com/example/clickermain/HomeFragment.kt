@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import com.example.clickermain.databinding.FragmentHomeBinding
 import com.example.clickermain.model.ClickViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -35,8 +34,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.minusButton.setOnClickListener {
-            if (sharedViewModel.ins > sharedViewModel.outs)
-            {
+            if (sharedViewModel.ins > sharedViewModel.outs) {
                 sharedViewModel.setOuts()
                 sharedViewModel.getTotal()
                 updateScreen()
@@ -44,12 +42,30 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun showDialog() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(getString(R.string.capacity))
+            .setMessage(getString(R.string.message, sharedViewModel.capacity))
+            .setCancelable(false)
+            .setNegativeButton(getString(R.string.exit)) { _, _ ->
+                exitGame()
+            }
+            .setPositiveButton(getString(R.string.increase)) { _, _ ->
+            }
+            .show()
+    }
+
     private fun updateScreen() {
-        binding.inCount.text = sharedViewModel.ins.toString()
-        binding.outCount.text = sharedViewModel.outs.toString()
-        binding.total.text = sharedViewModel.total.toString()
+        binding.ins.text = sharedViewModel.ins.toString()
+        binding.out.text = sharedViewModel.outs.toString()
+        binding.num.text = sharedViewModel.total.toString()
         binding.capacity.text = sharedViewModel.capacity.toString()
     }
+
+    private fun exitGame() {
+        activity?.finish()
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

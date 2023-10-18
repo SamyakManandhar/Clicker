@@ -31,4 +31,5 @@ class ClickViewModel : ViewModel() {
         _outs = _outs.plus(1)
     }
 
+
 }

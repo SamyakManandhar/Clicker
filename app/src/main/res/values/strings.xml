@@ -12,5 +12,9 @@
     <string name="total">TOTAL</string>
     <string name="plus">+</string>
     <string name="minus">-</string>
-
+    <string name="capacity">Capacity</string>
+    <string name="warning">You have exceeded your Capacity.</string>
+    <string name="message">Your capacity declared was: %d</string>
+    <string name="exit">Exit</string>
+    <string name="increase">Increase capacity by 10%</string>
 </resources>
