@@ -13,8 +13,7 @@ import com.example.clickermain.model.ClickViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class HomeFragment : Fragment() {
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    private var binding: FragmentHomeBinding? = null
     private val sharedViewModel: ClickViewModel by activityViewModels()
 
 
@@ -22,39 +21,28 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        val fragmentBinding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding = fragmentBinding
+        return fragmentBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        updateScreen()
-        binding.plusButton.setOnClickListener {
-            sharedViewModel.setIns()
-            sharedViewModel.getTotal()
-            if (sharedViewModel.checkCap() && sharedViewModel.checkLimit()) {
-                showDialog()
-            } else {
-                updateScreen()
-            }
-        }
-        binding.clearButton.setOnClickListener {
-            showAlertDialog()
-        }
+        binding?.apply {
+            // Specify the fragment as the lifecycle owner
+            lifecycleOwner = viewLifecycleOwner
 
-        binding.minusButton.setOnClickListener {
-            if (sharedViewModel.ins > sharedViewModel.outs) {
-                sharedViewModel.setOuts()
-                sharedViewModel.getTotal()
-                updateScreen()
-            }
+            // Assign the view model to a property in the binding class
+            viewModel = sharedViewModel
+
+            // Assign the fragment
+            homeFragment = this@HomeFragment
         }
     }
 
     private fun showDialog() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(R.string.capacity))
-            .setMessage(getString(R.string.message, sharedViewModel.capacity))
+            .setMessage(getString(R.string.message, sharedViewModel.capacity.value))
             .setCancelable(false)
             .setNegativeButton(getString(R.string.cancel)) { _, _ ->
                 Toast.makeText(requireContext(), R.string.cancelled, Toast.LENGTH_SHORT).show()
@@ -66,21 +54,23 @@ class HomeFragment : Fragment() {
             .show()
     }
 
-    private fun updateScreen() {
-        binding.ins.text = sharedViewModel.ins.toString()
-        binding.out.text = sharedViewModel.outs.toString()
-        binding.num.text = sharedViewModel.total.toString()
-        if (sharedViewModel.checkCap()) {
-            binding.capacity.text = sharedViewModel.capacity.toString()
-        } else {
-            binding.divider2.visibility = View.INVISIBLE
-            binding.capacity.visibility = View.INVISIBLE
-            binding.cap.visibility = View.INVISIBLE
+    fun checkouts() {
+        if (sharedViewModel.ins.value!! > sharedViewModel.outs.value!!) {
+            sharedViewModel.setOuts()
+        }else{
+            Toast.makeText(requireContext(),R.string.empty,Toast.LENGTH_SHORT).show()
         }
-
     }
 
-    private fun showAlertDialog() {
+    fun checkstat() {
+        if (sharedViewModel.checkCap() && sharedViewModel.checkLimit()) {
+            showDialog()
+        } else {
+            sharedViewModel.setIns()
+        }
+    }
+
+    fun showAlertDialog() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(R.string.confirmation))
             .setCancelable(true)
@@ -88,7 +78,6 @@ class HomeFragment : Fragment() {
                 Toast.makeText(requireContext(), R.string.cancelled, Toast.LENGTH_SHORT).show()
             }.setPositiveButton(getString(R.string.clear)) { _, _ ->
                 sharedViewModel.reset()
-                updateScreen()
             }
             .show()
     }
@@ -100,6 +89,6 @@ class HomeFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        binding = null
     }
 }

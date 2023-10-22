@@ -20,4 +20,8 @@
     <string name="exit">Exit</string>
     <string name="increase">Increase capacity</string>
     <string name="confirmation">Are you sure you want to clear?</string>
+    <string name="visible">visible</string>
+    <string name="invisible">invisible</string>
+    <string name="empty">Your venue is empty</string>
+
 </resources>
