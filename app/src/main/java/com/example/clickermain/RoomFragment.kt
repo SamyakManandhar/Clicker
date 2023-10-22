@@ -6,16 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
-import com.example.clickermain.databinding.FragmentHomeBinding
+import androidx.navigation.fragment.findNavController
 import com.example.clickermain.databinding.FragmentRoomBinding
 import com.example.clickermain.model.ClickViewModel
 
 
 class RoomFragment : Fragment() {
-    private var _binding: FragmentRoomBinding? = null
-    private val binding get() = _binding!!
+    private var binding: FragmentRoomBinding? = null
     private val sharedViewModel: ClickViewModel by activityViewModels()
 
 
@@ -23,41 +20,39 @@ class RoomFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentRoomBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        val fragmentBinding = FragmentRoomBinding.inflate(inflater, container, false)
+        binding = fragmentBinding
+        return fragmentBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.submit.setOnClickListener {
-            onSubmitWord()
-            val action = RoomFragmentDirections.actionRoomFragmentToHomeFragment()
-            view.findNavController().navigate(action)
-        }
-        binding.cancel.setOnClickListener {
-            val action = RoomFragmentDirections.actionRoomFragmentToStartFragment()
-            view.findNavController().navigate(action)
+        binding?.apply {
+            // Specify the fragment as the lifecycle owner
+            lifecycleOwner = viewLifecycleOwner
+
+            // Assign the view model to a property in the binding class
+            viewModel = sharedViewModel
+
+            // Assign the fragment
+            roomFragment = this@RoomFragment
         }
     }
 
-    private fun onSubmitWord() {
-        val play = binding.textInputEditText.text.toString()
+    fun onSubmitWord() {
+        val play = binding?.textInputEditText?.text.toString()
         sharedViewModel.setCapacity(play.toInt())
+        val action = RoomFragmentDirections.actionRoomFragmentToHomeFragment()
+        findNavController().navigate(action)
     }
 
-    private fun setErrorTextField(error: Boolean) {
-        if (error) {
-            binding.textField.isErrorEnabled = true
-            binding.textField.error = getString(R.string.try_again)
-        } else {
-            binding.textField.isErrorEnabled = false
-            binding.textInputEditText.text = null
-        }
+    fun navigate() {
+        val action = RoomFragmentDirections.actionRoomFragmentToStartFragment()
+        findNavController().navigate(action)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        binding = null
     }
 
 
