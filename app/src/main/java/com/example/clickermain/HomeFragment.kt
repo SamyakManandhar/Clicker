@@ -27,6 +27,7 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        checkmode()
         binding?.apply {
             // Specify the fragment as the lifecycle owner
             lifecycleOwner = viewLifecycleOwner
@@ -37,6 +38,7 @@ class HomeFragment : Fragment() {
             // Assign the fragment
             homeFragment = this@HomeFragment
         }
+
     }
 
     private fun showDialog() {
@@ -57,8 +59,8 @@ class HomeFragment : Fragment() {
     fun checkouts() {
         if (sharedViewModel.ins.value!! > sharedViewModel.outs.value!!) {
             sharedViewModel.setOuts()
-        }else{
-            Toast.makeText(requireContext(),R.string.empty,Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(requireContext(), R.string.empty, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -70,6 +72,22 @@ class HomeFragment : Fragment() {
         }
     }
 
+    fun checkmode() {
+        if (sharedViewModel.checkCap()) {
+            binding?.apply {
+                cap.visibility = View.VISIBLE
+                divider2.visibility = View.VISIBLE
+                capacity.visibility = View.VISIBLE
+            }
+        } else {
+            binding?.cap?.visibility = View.INVISIBLE
+            binding?.divider2?.visibility = View.INVISIBLE
+            binding?.capacity?.visibility = View.INVISIBLE
+
+        }
+    }
+
+
     fun showAlertDialog() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(R.string.confirmation))
@@ -80,6 +98,11 @@ class HomeFragment : Fragment() {
                 sharedViewModel.reset()
             }
             .show()
+    }
+
+    fun navigate(){
+        val action = HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
+        view?.findNavController()?.navigate(action)
     }
 
     private fun exit() {

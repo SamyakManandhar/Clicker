@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".SettingsFragment">
+
+    <data>
+        <variable
+            name="settingsFragment"
+            type="com.example.clickermain.SettingsFragment" />
+        <variable
+            name="viewModel"
+            type="com.example.clickermain.model.ClickViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/set_ins"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:drawablePadding="10dp"
+            android:text="@string/setins"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/set_outs"
+            app:drawableLeftCompat="@drawable/baseline_east_24" />
+
+        <TextView
+            android:id="@+id/set_outs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:drawablePadding="10dp"
+            app:drawableLeftCompat="@drawable/baseline_west_24"
+            android:text="@string/setouts"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/set_ins"
+            app:layout_constraintBottom_toTopOf="@+id/set_capa"/>
+
+        <TextView
+            android:id="@+id/set_capa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:drawablePadding="10dp"
+            app:drawableLeftCompat="@drawable/baseline_reduce_capacity_24"
+            android:text="@string/setcapa"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/set_outs" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
