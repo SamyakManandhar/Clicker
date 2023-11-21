@@ -5,9 +5,11 @@
     tools:context=".SettingsFragment">
 
     <data>
+
         <variable
             name="settingsFragment"
             type="com.example.clickermain.SettingsFragment" />
+
         <variable
             name="viewModel"
             type="com.example.clickermain.model.ClickViewModel" />
@@ -22,39 +24,139 @@
             android:id="@+id/set_ins"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             android:drawablePadding="10dp"
+            android:padding="10dp"
             android:text="@string/setins"
+            app:drawableLeftCompat="@drawable/baseline_east_24"
+            app:layout_constraintBottom_toTopOf="@+id/textField"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textField"
+            style="@style/Widget.Unscramble.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:hint="@{viewModel.ins.toString()}"
+            app:errorIconDrawable="@drawable/ic_error"
+            app:helperTextTextAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
             app:layout_constraintBottom_toTopOf="@+id/set_outs"
-            app:drawableLeftCompat="@drawable/baseline_east_24" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/set_ins">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_input_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <TextView
             android:id="@+id/set_outs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             android:drawablePadding="10dp"
-            app:drawableLeftCompat="@drawable/baseline_west_24"
+            android:padding="10dp"
             android:text="@string/setouts"
+            app:drawableLeftCompat="@drawable/baseline_west_24"
+            app:layout_constraintBottom_toTopOf="@+id/textField1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/set_ins"
-            app:layout_constraintBottom_toTopOf="@+id/set_capa"/>
+            app:layout_constraintTop_toBottomOf="@id/textField" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textField1"
+            style="@style/Widget.Unscramble.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:hint="@{viewModel.outs.toString()}"
+            app:errorIconDrawable="@drawable/ic_error"
+            app:helperTextTextAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            app:layout_constraintBottom_toTopOf="@+id/set_capa"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/set_outs">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_input_edit_text1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/set_capa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             android:drawablePadding="10dp"
-            app:drawableLeftCompat="@drawable/baseline_reduce_capacity_24"
+            android:padding="10dp"
             android:text="@string/setcapa"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:drawableLeftCompat="@drawable/baseline_reduce_capacity_24"
+            app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/set_outs" />
+            app:layout_constraintTop_toBottomOf="@id/textField1" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textField2"
+            style="@style/Widget.Unscramble.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:hint="@{viewModel.capacity.toString()}"
+            app:errorIconDrawable="@drawable/ic_error"
+            app:helperTextTextAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/set_capa">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_input_edit_text2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/cancel"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="10dp"
+            android:onClick="@{()->settingsFragment.navigate()}"
+            android:text="@string/cancel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/confirm"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textField2" />
+
+        <Button
+            android:id="@+id/confirm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="@string/submit"
+            android:onClick="@{()->settingsFragment.onSubmitWord()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cancel"
+            app:layout_constraintTop_toTopOf="@+id/cancel" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

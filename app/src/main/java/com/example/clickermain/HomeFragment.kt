@@ -72,7 +72,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    fun checkmode() {
+    private fun checkmode() {
         if (sharedViewModel.checkCap()) {
             binding?.apply {
                 cap.visibility = View.VISIBLE
@@ -100,14 +100,14 @@ class HomeFragment : Fragment() {
             .show()
     }
 
-    fun navigate(){
+    fun navigate() {
         val action = HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
         view?.findNavController()?.navigate(action)
     }
 
     private fun exit() {
         activity?.finish()
-    }
+    }   
 
 
     override fun onDestroyView() {

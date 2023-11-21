@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".RoomFragment">
 
     <data>
+
         <variable
             name="roomFragment"
             type="com.example.clickermain.RoomFragment" />
+
         <variable
             name="viewModel"
             type="com.example.clickermain.model.ClickViewModel" />
@@ -57,11 +59,11 @@
 
             <TextView
                 android:id="@+id/textView_unscrambled_word"
-                android:text="@string/app_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_margin"
                 android:layout_marginBottom="@dimen/default_margin"
+                android:text="@string/app_name"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3"
                 app:layout_constraintBottom_toTopOf="@+id/textView_instructions"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -78,7 +80,6 @@
                 android:hint="@string/instruction"
                 app:errorIconDrawable="@drawable/ic_error"
                 app:helperTextTextAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-                app:layout_constraintBottom_toTopOf="@+id/submit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_instructions">
