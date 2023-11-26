@@ -1,10 +1,8 @@
 package com.example.clickermain.model
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.clickermain.R
 
 class ClickViewModel : ViewModel() {
     private val _ins = MutableLiveData<Int>()
@@ -31,6 +29,14 @@ class ClickViewModel : ViewModel() {
     fun setIns() {
         _ins.value = _ins.value?.plus(1)
         getTotal()
+    }
+
+    fun setIns(ins: Int) {
+        _ins.value = ins
+    }
+
+    fun setOuts(outs: Int) {
+        _outs.value = outs
     }
 
     fun setCapacity(limits: Int) {

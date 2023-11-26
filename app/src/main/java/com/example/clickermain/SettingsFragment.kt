@@ -6,13 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.example.clickermain.databinding.FragmentRoomBinding
+import com.example.clickermain.databinding.FragmentSettingsBinding
 import com.example.clickermain.model.ClickViewModel
 
 
-class RoomFragment : Fragment() {
-    private var binding: FragmentRoomBinding? = null
+class SettingsFragment : Fragment() {
+    private var binding: FragmentSettingsBinding? = null
     private val sharedViewModel: ClickViewModel by activityViewModels()
 
 
@@ -20,13 +21,13 @@ class RoomFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val fragmentBinding = FragmentRoomBinding.inflate(inflater, container, false)
+        // Inflate the layout for this fragment
+        val fragmentBinding = FragmentSettingsBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        hintON()
         binding?.apply {
             // Specify the fragment as the lifecycle owner
             lifecycleOwner = viewLifecycleOwner
@@ -35,33 +36,30 @@ class RoomFragment : Fragment() {
             viewModel = sharedViewModel
 
             // Assign the fragment
-            roomFragment = this@RoomFragment
-        }
-    }
-
-    fun onSubmitWord() {
-        val play = binding?.textInputEditText?.text.toString()
-        if (play.toInt() > (sharedViewModel.capacity.value!!)) {
-            setErrorTextField(false)
-            sharedViewModel.setCapacity(play.toInt())
-            val action = RoomFragmentDirections.actionRoomFragmentToHomeFragment()
-            findNavController().navigate(action)
-        } else {
-          setErrorTextField(true)
+            settingsFragment = this@SettingsFragment
         }
     }
 
     fun navigate() {
-        val action = RoomFragmentDirections.actionRoomFragmentToStartFragment()
-        findNavController().navigate(action)
+        val action = SettingsFragmentDirections.actionSettingsFragmentToHomeFragment()
+        view?.findNavController()?.navigate(action)
     }
 
-    fun hintON() {
-        if (sharedViewModel.checkCap()) {
-            binding?.apply {
-                textField.hint = getString(R.string.message, sharedViewModel.capacity.value)
-            }
-        }
+    fun onSubmitWord() {
+//        val ins = binding?.textInputEditText?.text.toString()
+//        val outs = binding?.textInputEditText1?.text.toString()
+//        val capa = binding?.textInputEditText2?.text.toString()
+//        if (ins.toInt() > outs.toInt()) {
+//            setErrorTextField(false)
+//            sharedViewModel.setIns(ins.toInt())
+//            sharedViewModel.setOuts(outs.toInt())
+//        }
+//        if (capa.toInt() > (sharedViewModel.capacity.value!!)) {
+//            setErrorTextField(false)
+//            sharedViewModel.setCapacity(capa.toInt())
+//        } else {
+//            setErrorTextField(true)
+//        }
     }
 
     private fun setErrorTextField(error: Boolean) {
@@ -71,13 +69,8 @@ class RoomFragment : Fragment() {
         } else {
             binding?.textField?.isErrorEnabled = false
             binding?.textInputEditText?.text = null
+            val action = SettingsFragmentDirections.actionSettingsFragmentToHomeFragment()
+            findNavController().navigate(action)
         }
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null
-    }
-
-
 }
