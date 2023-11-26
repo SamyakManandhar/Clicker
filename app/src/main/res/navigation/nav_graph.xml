@@ -56,5 +56,8 @@
         <action
             android:id="@+id/action_settingsFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_roomFragment"
+            app:destination="@id/roomFragment" />
     </fragment>
 </navigation>

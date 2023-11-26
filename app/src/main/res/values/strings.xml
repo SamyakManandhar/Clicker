@@ -9,6 +9,8 @@
     <string name="clear">Clear Counter</string>
     <string name="submit">Submit</string>
     <string name="try_again">Try again!</string>
+    <string name="warningIns">Ins has to be greater than outs</string>
+    <string name="warningOuts">Outs cannot be greater than Ins</string>
     <string name="in">INS</string>
     <string name="out">OUT</string>
     <string name="total">TOTAL</string>
@@ -25,5 +27,6 @@
     <string name="setins">Set Ins</string>
     <string name="setouts">Set Outs</string>
     <string name="setcapa">Set Capacity</string>
+    <string name="required">Required</string>
 
 </resources>

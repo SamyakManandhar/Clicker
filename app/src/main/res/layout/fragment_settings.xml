@@ -43,7 +43,9 @@
             android:layout_marginEnd="10dp"
             android:hint="@{viewModel.ins.toString()}"
             app:errorIconDrawable="@drawable/ic_error"
+            app:helperText="@string/required"
             app:helperTextTextAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            app:helperTextTextColor="@android:color/holo_red_dark"
             app:layout_constraintBottom_toTopOf="@+id/set_outs"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,6 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawablePadding="10dp"
+            android:layout_marginTop="10dp"
             android:padding="10dp"
             android:text="@string/setouts"
             app:drawableLeftCompat="@drawable/baseline_west_24"
@@ -81,7 +84,9 @@
             android:layout_marginEnd="10dp"
             android:hint="@{viewModel.outs.toString()}"
             app:errorIconDrawable="@drawable/ic_error"
+            app:helperText="@string/required"
             app:helperTextTextAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            app:helperTextTextColor="@android:color/holo_red_dark"
             app:layout_constraintBottom_toTopOf="@+id/set_capa"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -101,35 +106,16 @@
             android:layout_height="wrap_content"
             android:drawablePadding="10dp"
             android:padding="10dp"
+            android:layout_marginTop="10dp"
             android:text="@string/setcapa"
+            android:onClick="@{()->settingsFragment.navigate(1)}"
             app:drawableLeftCompat="@drawable/baseline_reduce_capacity_24"
             app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textField1" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textField2"
-            style="@style/Widget.Unscramble.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:hint="@{viewModel.capacity.toString()}"
-            app:errorIconDrawable="@drawable/ic_error"
-            app:helperTextTextAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/set_capa">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text_input_edit_text2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="number"
-                android:maxLines="1" />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/cancel"
@@ -139,20 +125,20 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="50dp"
             android:layout_marginEnd="10dp"
-            android:onClick="@{()->settingsFragment.navigate()}"
+            android:onClick="@{()->settingsFragment.navigate(2)}"
             android:text="@string/cancel"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/confirm"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textField2" />
+            app:layout_constraintTop_toBottomOf="@id/set_capa" />
 
         <Button
             android:id="@+id/confirm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            android:text="@string/submit"
             android:onClick="@{()->settingsFragment.onSubmitWord()}"
+            android:text="@string/submit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/cancel"

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -27,7 +28,10 @@ class SettingsFragment : Fragment() {
         return fragmentBinding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        insFocusListener()
+        outsFocusListener()
         binding?.apply {
             // Specify the fragment as the lifecycle owner
             lifecycleOwner = viewLifecycleOwner
@@ -40,37 +44,112 @@ class SettingsFragment : Fragment() {
         }
     }
 
-    fun navigate() {
-        val action = SettingsFragmentDirections.actionSettingsFragmentToHomeFragment()
-        view?.findNavController()?.navigate(action)
+
+    fun navigate(num: Int) {
+        when (num) {
+            1 -> {
+                val action = SettingsFragmentDirections.actionSettingsFragmentToRoomFragment()
+                findNavController().navigate(action)
+            }
+
+            2 -> {
+                val action = SettingsFragmentDirections.actionSettingsFragmentToHomeFragment()
+                view?.findNavController()?.navigate(action)
+            }
+        }
+
     }
 
     fun onSubmitWord() {
-//        val ins = binding?.textInputEditText?.text.toString()
-//        val outs = binding?.textInputEditText1?.text.toString()
-//        val capa = binding?.textInputEditText2?.text.toString()
-//        if (ins.toInt() > outs.toInt()) {
-//            setErrorTextField(false)
-//            sharedViewModel.setIns(ins.toInt())
-//            sharedViewModel.setOuts(outs.toInt())
-//        }
-//        if (capa.toInt() > (sharedViewModel.capacity.value!!)) {
-//            setErrorTextField(false)
-//            sharedViewModel.setCapacity(capa.toInt())
-//        } else {
-//            setErrorTextField(true)
-//        }
+        val ins = binding?.textInputEditText?.text.toString()
+        val outs = binding?.textInputEditText1?.text.toString()
+        if (ins.toInt() > outs.toInt()) {
+            sharedViewModel.setIns(ins.toInt())
+            sharedViewModel.setOuts(outs.toInt())
+            val action = SettingsFragmentDirections.actionSettingsFragmentToHomeFragment()
+            view?.findNavController()?.navigate(action)
+        } else {
+            Toast.makeText(requireContext(), R.string.warningOuts, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+    private fun insFocusListener() {
+        binding?.textInputEditText?.setOnFocusChangeListener { _, focused ->
+            if (!focused) {
+                validIns()
+            }
+        }
+    }
+
+    private fun validIns() {
+        val ins = binding?.textInputEditText?.text.toString()
+        val outs = binding?.textInputEditText1?.text.toString()
+        if (outs.isNotEmpty()) {
+            if (outs.toInt() > ins.toInt()) {
+                setErrorTextField(true)
+            } else {
+                setErrorTextField(false)
+            }
+        } else {
+            setErrorTextField(false)
+        }
+    }
+
+
+    private fun outsFocusListener() {
+
+        binding?.textInputEditText1?.setOnFocusChangeListener { _, focused ->
+            if (!focused) {
+                validOuts()
+            }
+        }
+    }
+
+    private fun validOuts() {
+        val ins = binding?.textInputEditText?.text.toString()
+        val outs = binding?.textInputEditText1?.text.toString()
+        if (ins.isNotEmpty()) {
+            if (outs.toInt() > ins.toInt()) {
+                setErrorTextField1(true)
+            } else {
+                setErrorTextField1(false)
+            }
+        } else {
+            setErrorTextField1(false)
+        }
     }
 
     private fun setErrorTextField(error: Boolean) {
         if (error) {
             binding?.textField?.isErrorEnabled = true
-            binding?.textField?.error = getString(R.string.try_again)
+            binding?.textField?.error = getString(R.string.warningIns)
         } else {
             binding?.textField?.isErrorEnabled = false
-            binding?.textInputEditText?.text = null
-            val action = SettingsFragmentDirections.actionSettingsFragmentToHomeFragment()
-            findNavController().navigate(action)
+            binding?.textField?.helperText = null
+        }
+    }
+
+    private fun setErrorTextField1(error: Boolean) {
+        if (error) {
+            binding?.textField1?.isErrorEnabled = true
+            binding?.textField1?.error = getString(R.string.warningOuts)
+        } else {
+            binding?.textField1?.isErrorEnabled = false
+            binding?.textField1?.helperText = null
         }
     }
 }
+
+//if (outs.isNotEmpty()) {
+//    if (outs.toInt() > ins.toInt()) {
+//        setErrorTextField(true)
+//    } else {
+//        setErrorTextField1(false)
+//    }
+//}
+//if (ins.toInt() == 0) {
+//    setErrorTextField(true)
+//} else {
+//    setErrorTextField(false)
+//}
