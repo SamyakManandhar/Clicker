@@ -41,13 +41,17 @@ class RoomFragment : Fragment() {
 
     fun onSubmitWord() {
         val play = binding?.textInputEditText?.text.toString()
-        if (play.toInt() > (sharedViewModel.capacity.value!!)) {
-            setErrorTextField(false)
-            sharedViewModel.setCapacity(play.toInt())
-            val action = RoomFragmentDirections.actionRoomFragmentToHomeFragment()
-            findNavController().navigate(action)
+        if (play.isNotBlank()) {
+            if (play.toInt() > (sharedViewModel.capacity.value!!)) {
+                setErrorTextField(false)
+                sharedViewModel.setCapacity(play.toInt())
+                val action = RoomFragmentDirections.actionRoomFragmentToHomeFragment()
+                findNavController().navigate(action)
+            } else {
+                setErrorTextField(true)
+            }
         } else {
-          setErrorTextField(true)
+            setErrorTextField(true)
         }
     }
 
@@ -67,7 +71,7 @@ class RoomFragment : Fragment() {
     private fun setErrorTextField(error: Boolean) {
         if (error) {
             binding?.textField?.isErrorEnabled = true
-            binding?.textField?.error = getString(R.string.try_again)
+            binding?.textField?.error = getString(R.string.capahigh)
         } else {
             binding?.textField?.isErrorEnabled = false
             binding?.textInputEditText?.text = null
