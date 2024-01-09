@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "524406263145",
+    "project_id": "clicker-8031e",
+    "storage_bucket": "clicker-8031e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:524406263145:android:3059c1fe591ee9f9f1c1f8",
+        "android_client_info": {
+          "package_name": "com.example.clickermain"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-FxFCsaM-k45noKWUp4BO34qW_xWZA6o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
