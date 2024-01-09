@@ -33,10 +33,12 @@ class ClickViewModel : ViewModel() {
 
     fun setIns(ins: Int) {
         _ins.value = ins
+        getTotal()
     }
 
     fun setOuts(outs: Int) {
         _outs.value = outs
+        getTotal()
     }
 
     fun setCapacity(limits: Int) {
@@ -60,5 +62,6 @@ class ClickViewModel : ViewModel() {
         _ins.value = 0
         _outs.value = 0
         _total.value = 0
+        _capacity.value = 0
     }
 }

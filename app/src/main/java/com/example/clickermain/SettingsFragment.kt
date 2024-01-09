@@ -63,13 +63,17 @@ class SettingsFragment : Fragment() {
     fun onSubmitWord() {
         val ins = binding?.textInputEditText?.text.toString()
         val outs = binding?.textInputEditText1?.text.toString()
-        if (ins.toInt() > outs.toInt()) {
-            sharedViewModel.setIns(ins.toInt())
-            sharedViewModel.setOuts(outs.toInt())
-            val action = SettingsFragmentDirections.actionSettingsFragmentToHomeFragment()
-            view?.findNavController()?.navigate(action)
+        if (ins.isNotBlank() && outs.isNotBlank()) {
+            if (ins.toInt() > outs.toInt()) {
+                sharedViewModel.setIns(ins.toInt())
+                sharedViewModel.setOuts(outs.toInt())
+                val action = SettingsFragmentDirections.actionSettingsFragmentToHomeFragment()
+                view?.findNavController()?.navigate(action)
+            } else {
+                Toast.makeText(requireContext(), R.string.warningOuts, Toast.LENGTH_SHORT).show()
+            }
         } else {
-            Toast.makeText(requireContext(), R.string.warningOuts, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), R.string.required, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -85,7 +89,7 @@ class SettingsFragment : Fragment() {
     private fun validIns() {
         val ins = binding?.textInputEditText?.text.toString()
         val outs = binding?.textInputEditText1?.text.toString()
-        if (outs.isNotEmpty()) {
+        if (outs.isNotEmpty()&&ins.isNotEmpty()) {
             if (outs.toInt() > ins.toInt()) {
                 setErrorTextField(true)
             } else {
@@ -109,7 +113,7 @@ class SettingsFragment : Fragment() {
     private fun validOuts() {
         val ins = binding?.textInputEditText?.text.toString()
         val outs = binding?.textInputEditText1?.text.toString()
-        if (ins.isNotEmpty()) {
+        if (ins.isNotEmpty()&&outs.isNotEmpty()) {
             if (outs.toInt() > ins.toInt()) {
                 setErrorTextField1(true)
             } else {
@@ -141,15 +145,3 @@ class SettingsFragment : Fragment() {
     }
 }
 
-//if (outs.isNotEmpty()) {
-//    if (outs.toInt() > ins.toInt()) {
-//        setErrorTextField(true)
-//    } else {
-//        setErrorTextField1(false)
-//    }
-//}
-//if (ins.toInt() == 0) {
-//    setErrorTextField(true)
-//} else {
-//    setErrorTextField(false)
-//}

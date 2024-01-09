@@ -72,6 +72,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+
     private fun checkmode() {
         if (sharedViewModel.checkCap()) {
             binding?.apply {
@@ -96,6 +97,8 @@ class HomeFragment : Fragment() {
                 Toast.makeText(requireContext(), R.string.cancelled, Toast.LENGTH_SHORT).show()
             }.setPositiveButton(getString(R.string.clear)) { _, _ ->
                 sharedViewModel.reset()
+                val action = HomeFragmentDirections.actionHomeFragmentSelf()
+                view?.findNavController()?.navigate(action)
             }
             .show()
     }
@@ -107,7 +110,7 @@ class HomeFragment : Fragment() {
 
     private fun exit() {
         activity?.finish()
-    }   
+    }
 
 
     override fun onDestroyView() {
