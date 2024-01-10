@@ -8,11 +8,11 @@
 
         <variable
             name="homeFragment"
-            type="com.example.clickermain.HomeFragment" />
+            type="com.application.clickermain.HomeFragment" />
 
         <variable
             name="viewModel"
-            type="com.example.clickermain.model.ClickViewModel" />
+            type="com.application.clickermain.model.ClickViewModel" />
     </data>
 
 

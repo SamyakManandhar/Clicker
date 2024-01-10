@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/startFragment"
-        android:name="com.example.clickermain.StartFragment"
+        android:name="com.application.clickermain.StartFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_start">
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.clickermain.HomeFragment"
+        android:name="com.application.clickermain.HomeFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_home">
         <action
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/roomFragment"
-        android:name="com.example.clickermain.RoomFragment"
+        android:name="com.application.clickermain.RoomFragment"
         android:label="@string/instruction"
         tools:layout="@layout/fragment_room">
         <action
@@ -53,7 +53,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.clickermain.SettingsFragment"
+        android:name="com.application.clickermain.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" >
         <action

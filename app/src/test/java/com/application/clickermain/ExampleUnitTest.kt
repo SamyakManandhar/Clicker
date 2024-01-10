@@ -1,4 +1,4 @@
-package com.example.clickermain
+package com.application.clickermain
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.example.clickermain
+package com.application.clickermain
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.clickermain.databinding.FragmentRoomBinding
-import com.example.clickermain.model.ClickViewModel
+import com.application.clickermain.databinding.FragmentRoomBinding
+import com.application.clickermain.model.ClickViewModel
 
 
 class RoomFragment : Fragment() {

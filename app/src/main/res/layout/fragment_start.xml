@@ -7,7 +7,7 @@
     <data>
         <variable
             name="startFragment"
-            type="com.example.clickermain.StartFragment" />
+            type="com.application.clickermain.StartFragment" />
     </data>
 
     <FrameLayout

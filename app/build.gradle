@@ -8,8 +8,8 @@ plugins {
 }
 
 android {
-    namespace 'com.example.clickermain'
-    compileSdk 33
+    namespace 'com.application.clickermain'
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.clickermain"

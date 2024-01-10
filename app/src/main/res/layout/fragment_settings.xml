@@ -8,11 +8,11 @@
 
         <variable
             name="settingsFragment"
-            type="com.example.clickermain.SettingsFragment" />
+            type="com.application.clickermain.SettingsFragment" />
 
         <variable
             name="viewModel"
-            type="com.example.clickermain.model.ClickViewModel" />
+            type="com.application.clickermain.model.ClickViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

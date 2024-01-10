@@ -1,4 +1,4 @@
-package com.example.clickermain
+package com.application.clickermain
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,8 +9,8 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.example.clickermain.databinding.FragmentSettingsBinding
-import com.example.clickermain.model.ClickViewModel
+import com.application.clickermain.databinding.FragmentSettingsBinding
+import com.application.clickermain.model.ClickViewModel
 
 
 class SettingsFragment : Fragment() {

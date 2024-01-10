@@ -8,11 +8,11 @@
 
         <variable
             name="roomFragment"
-            type="com.example.clickermain.RoomFragment" />
+            type="com.application.clickermain.RoomFragment" />
 
         <variable
             name="viewModel"
-            type="com.example.clickermain.model.ClickViewModel" />
+            type="com.application.clickermain.model.ClickViewModel" />
     </data>
 
     <FrameLayout

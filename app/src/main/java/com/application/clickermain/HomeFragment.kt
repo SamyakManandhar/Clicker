@@ -1,4 +1,4 @@
-package com.example.clickermain
+package com.application.clickermain
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
-import com.example.clickermain.databinding.FragmentHomeBinding
-import com.example.clickermain.model.ClickViewModel
+import com.application.clickermain.databinding.FragmentHomeBinding
+import com.application.clickermain.model.ClickViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class HomeFragment : Fragment() {
