@@ -12,7 +12,7 @@ android {
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.clickermain"
+        applicationId "com.application.clickermain"
         minSdk 24
         targetSdk 33
         versionCode 1
